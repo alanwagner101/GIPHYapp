@@ -7,7 +7,7 @@ function gifInfo() {
 
     var tag = $(this).attr("data-name");
 
-    var queryURL = ("http://api.giphy.com/v1/gifs/search?q=" + tag + "&api_key=5z9ka4r0we9hpxZ8lskGF9UYOQ2xBXGb&limit=10");
+    var queryURL = ("https://api.giphy.com/v1/gifs/search?q=" + tag + "&api_key=5z9ka4r0we9hpxZ8lskGF9UYOQ2xBXGb&limit=10");
 
     $.ajax({
         url: queryURL,
@@ -75,6 +75,85 @@ function gifInfo() {
 
 }
 
+function SearchButton() {
+
+        var tag = $("#tag-input").val();
+
+        var queryURL = ("https://api.giphy.com/v1/gifs/search?q=" + tag + "&api_key=5z9ka4r0we9hpxZ8lskGF9UYOQ2xBXGb&limit=10");
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response2) {
+            // var response2.data = response2.data;
+            $(".gif-connector").empty();
+            $(".gif-view").empty();
+            console.log(response2)
+
+            var active2 = $("<li>");
+            active2.addClass("active");
+            active2.attr("data-target", "#carouselExampleIndicators");
+            active2.attr("data-slide-to", "0");
+
+            $(".gif-connector").append(active2);
+
+            var active1 = $("<div>");
+            active1.addClass("carousel-item active");
+            active1.append(
+                "<img class='d-block w-100 gif' src='" + response2.data[0].images.original_still.url + "' data-still='" + response2.data[0].images.original_still.url + "' data-animate='" + response2.data[0].images.original.url + "' data-state='still'>" +
+                "<div class='carousel-caption d-none d-md-block'>" +
+                "<h5> " + response2.data[0].title + " </h5>" + "<p>Rating : " + response2.data[0].rating + " </p>" +
+                "</div>"
+            );
+
+            $(".gif-view").append(active1);
+
+
+            for (var j = 1; j < response2.data.length; j++) {
+                var gifConnector = $("<li>");
+                gifConnector.attr("data-target", "#carouselExampleIndicators");
+                gifConnector.attr("data-slide-to", "0");
+
+                $(".gif-connector").append(gifConnector);
+
+                var gifView = $("<div>");
+                gifView.addClass("carousel-item");
+                gifView.append(
+                    "<img class='d-block w-100 gif' src='" + response2.data[j].images.original_still.url + "' data-still='" + response2.data[j].images.original_still.url + "' data-animate='" + response2.data[j].images.original.url + "' data-state='still'>" +
+                    "<div class='carousel-caption d-none d-md-block'>" +
+                    "<h5> " + response2.data[j].title + " </h5>" + "<p>Rating : " + response2.data[j].rating + " </p>" +
+                    "</div>"
+                );
+
+                $(".gif-view").append(gifView);
+            }
+
+        });
+
+        $(".gif").on("click", function () {
+
+            var state = $(this).attr("data-state");
+        
+            if (state === "still") {
+                $(this).attr("data-state", "animate")
+                $(this).attr("src", $(this).attr("data-animate"));
+            } else if (state === "animate") {
+                $(this).attr("data-state", "still")
+                $(this).attr("src", $(this).attr("data-still"));
+            };
+
+        });
+
+}
+
+$("#Search").on("click", function() {
+    event.preventDefault();
+
+    SearchButton()
+});
+
+SearchButton()
+
 function renderButtons() {
 
     $("#buttons-view").empty();
@@ -114,6 +193,7 @@ $("#clear").on("click", function() {
 
     $(".gif-connector").empty();
     $(".gif-view").empty();
-    $("#button-view").empty();
+    $("#buttons-view").empty();
+    tags = [];
 
 })

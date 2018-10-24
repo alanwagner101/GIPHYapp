@@ -1,5 +1,3 @@
-//5z9ka4r0we9hpxZ8lskGF9UYOQ2xBXGb
-//http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5
 
 var tags = [];
 
@@ -57,8 +55,6 @@ function gifInfo() {
 
         $(".gif").on("click", function () {
 
-            console.log(this)
-
             var state = $(this).attr("data-state");
 
             if (state === "still") {
@@ -80,7 +76,6 @@ function gifInfo() {
 function SearchButton() {
 
     var tag = $("#tag-input").val();
-    console.log(tag)
 
     var queryURL = ("https://api.giphy.com/v1/gifs/search?q=" + tag + "&api_key=5z9ka4r0we9hpxZ8lskGF9UYOQ2xBXGb&limit=10");
 
@@ -91,7 +86,6 @@ function SearchButton() {
         var gifs = response.data;
         $(".gif-connector").empty();
         $(".gif-view").empty();
-        console.log(response)
 
         var active2 = $("<li>");
         active2.addClass("active");
@@ -132,8 +126,6 @@ function SearchButton() {
         }
 
     $(".gif").on("click", function () {
-
-        console.log(this)
 
         var state = $(this).attr("data-state");
 
@@ -182,8 +174,6 @@ $("#add-tag").on("click", function (event) {
     var tag = $("#tag-input").val().trim();
 
     tags.push(tag);
-
-    console.log(tags);
 
     renderButtons();
 

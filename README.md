@@ -16,4 +16,6 @@ There is also a clear tags button that will remove all the tags you have saved a
 
 Ever time you search will remove the previous search information from the screen and replace it with the latest search carousel.
 
+This web app uses GIPHY's API to pull the gifs.
+
 Have fun! and I hope you enjoy my work!

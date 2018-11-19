@@ -4,6 +4,8 @@ https://alanwagner101.github.io/GIPHYapp/
 
 This app is designed to allow you to search for gifs by keywords and save those keywords in button form if you wish to revisit those gifs.
 
+The main challenge of this app was in the use of API's. We were required to pull from the GIPHY API and display the images in a way that was easy and fun for the user.
+
 How it works is as such:
 
 First you enter in a keyword in the search bar such as "cat", "dog", or "cars" for instance. You then can click the search button.
@@ -15,7 +17,5 @@ If you decide to save the keyword it will creat a new button in the top right co
 There is also a clear tags button that will remove all the tags you have saved and leave you with a blank slate.
 
 Ever time you search will remove the previous search information from the screen and replace it with the latest search carousel.
-
-This web app uses GIPHY's API to pull the gifs.
 
 Have fun! and I hope you enjoy my work!
